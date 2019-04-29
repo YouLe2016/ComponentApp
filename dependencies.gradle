@@ -1,0 +1,30 @@
+ext {
+    //android开发版本配置
+    android = [
+            compileSdkVersion        : 28,
+            buildToolsVersion        : "28.0.0",
+            applicationId            : "com.wyl.componentapp",
+            minSdkVersion            : 19,
+            targetSdkVersion         : 28,
+            versionCode              : 1,
+            versionName              : "1.0",
+            testInstrumentationRunner: "android.support.test.runner.AndroidJUnitRunner",
+    ]
+    //version配置
+    versions = [
+            "support-version": "28.0.0",
+            "junit-version"  : "4.12",
+            "kotlin_version" : '1.3.30',
+    ]
+    //support配置
+    support = [
+            'junit'             : "junit:junit:${versions["junit-version"]}",
+            'kotlin-stdlib-jdk7': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions["kotlin_version"]}",
+            'appcompat-v7'      : "com.android.support:appcompat-v7:${versions["support-version"]}",
+            "constraint-layout" : "com.android.support.constraint:constraint-layout:1.1.3",
+    ]
+    //依赖第三方配置
+    dependencies = [
+            "pager-bottom-tab-strip": 'me.majiajie:pager-bottom-tab-strip:2.3.0'
+    ]
+}
