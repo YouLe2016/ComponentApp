@@ -1,4 +1,4 @@
-package com.wyl.componentapp.base
+package com.wyl.componentapp.module_common.base
 
 import android.content.Context
 import android.os.Bundle

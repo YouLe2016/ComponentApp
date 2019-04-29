@@ -29,6 +29,7 @@ dependencies {
     implementation rootProject.ext.support["kotlin-stdlib-jdk7"]
     implementation rootProject.ext.support["appcompat-v7"]
     implementation rootProject.ext.support["constraint-layout"]
+    implementation 'com.android.support:support-v4:28.0.0'
     testImplementation rootProject.ext.support["junit"]
 
     implementation rootProject.ext.dependencies["pager-bottom-tab-strip"]

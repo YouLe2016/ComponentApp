@@ -1,4 +1,4 @@
-package com.wyl.componentapp.base
+package com.wyl.componentapp.module_common.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
