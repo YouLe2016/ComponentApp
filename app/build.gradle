@@ -6,6 +6,11 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+repositories {
+    mavenCentral()
+    flatDir { dir 'libs' }
+}
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
@@ -17,20 +22,43 @@ android {
         testInstrumentationRunner rootProject.ext.android.testInstrumentationRunner
     }
     buildTypes {
+        debug {
+            //显示Log打印输出
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "String", "API_HOST", "\"http://192.168.1.88:8080\""
+            minifyEnabled false   //混淆编译
+            zipAlignEnabled false //Zip代码压缩优化
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //不显示Log打印输出
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "String", "API_HOST", "\"http://122.114.236.100:8088\""
+            minifyEnabled false  //混淆编译
+            zipAlignEnabled true //Zip代码压缩优化
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        main { jniLibs.srcDirs = ['libs'] }
+    }
+    dataBinding.enabled = true
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.support["kotlin-stdlib-jdk7"]
     implementation rootProject.ext.support["appcompat-v7"]
+    implementation rootProject.ext.support["support-v4"]
     implementation rootProject.ext.support["constraint-layout"]
-    implementation 'com.android.support:support-v4:28.0.0'
-    testImplementation rootProject.ext.support["junit"]
 
+    testImplementation rootProject.ext.support["junit"]
+    androidTestImplementation rootProject.ext.support["runner"]
+    androidTestImplementation rootProject.ext.support["espresso-core"]
     implementation rootProject.ext.dependencies["pager-bottom-tab-strip"]
+
+    implementation project(path: ':okgo')
+
+    def aar = ['SVProgressHUD-1.0']
+    aar.each { implementation(name: it, ext: 'aar') }
 }
