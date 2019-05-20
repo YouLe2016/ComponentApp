@@ -39,8 +39,17 @@ android {
         }
     }
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-        main { jniLibs.srcDirs = ['libs'] }
+        main {
+//            java.srcDirs = ['src']
+//            java.srcDirs += 'src/main/kotlin'
+//            jniLibs.srcDirs = ['libs']
+            res.srcDirs += "src/main/res-home"
+            res.srcDirs += "src/main/res-message"
+            res.srcDirs += "src/main/res-mine"
+        }
+//        test {
+//            java.srcDirs += 'src/test/kotlin'
+//        }
     }
     dataBinding.enabled = true
 }

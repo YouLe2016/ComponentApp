@@ -1,11 +1,11 @@
 package com.wyl.componentapp
 
 import android.os.Bundle
-import com.wyl.componentapp.module_common.base.BaseActivity
-import com.wyl.componentapp.module_common.utils.transact
-import com.wyl.componentapp.module_home.HomeFragment
-import com.wyl.componentapp.module_message.MessageFragment
-import com.wyl.componentapp.module_mine.MineFragment
+import com.wyl.componentapp.common.base.BaseActivity
+import com.wyl.componentapp.common.utils.transact
+import com.wyl.componentapp.home.HomeFragment
+import com.wyl.componentapp.message.MessageFragment
+import com.wyl.componentapp.mine.MineFragment
 import kotlinx.android.synthetic.main.activity_home_layout.*
 
 

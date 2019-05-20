@@ -1,3 +1,14 @@
 package com.wyl.componentapp
 
-data class Bean(val name: String, val age: Int)
+import java.io.Serializable
+
+data class Bean(
+    val name: String,
+    val age: Int/*,
+    val xx: String?*/
+) : Serializable {
+    companion object {
+        private const val serialVersionUID = 1L
+    }
+
+}
