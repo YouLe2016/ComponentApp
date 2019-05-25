@@ -11,6 +11,7 @@ import com.lzy.okgo.OkGo
 import com.lzy.okgo.model.Response
 import com.wyl.componentapp.R
 import kotlinx.android.synthetic.main.fragment_home_layout.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 private const val ARG_PARAM1 = "param1"
@@ -21,6 +22,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class HomeFragment : Fragment() {
+    val myViewModel: MyViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +35,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         OkGo.get<String>("http://gank.io/api/today")
             .tag(this)
-            .execute(object : StringDialogCallback(activity,true) {
+            .execute(object : StringDialogCallback(activity, true) {
                 override fun onSuccessResponse(response: Response<String>, msg: String?, msgCode: String?) {
                     val data = response.body()//这个就是返回来的结果
                     text.text = data

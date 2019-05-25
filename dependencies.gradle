@@ -35,6 +35,11 @@ ext {
             "okhttp3"               : 'com.squareup.okhttp3:okhttp:3.11.0',
             "okrx"                  : 'com.lzy.net:okrx2:2.0.2',
             "rxandroid"             : 'io.reactivex.rxjava2:rxandroid:2.0.2',
-            "gson"                  : 'com.google.code.gson:gson:2.8.5'
+            "gson"                  : 'com.google.code.gson:gson:2.8.5',
+
+            //koin
+            "koin-android"          : "org.koin:koin-android:1.0.1",
+            "koin-android-scope"    : "org.koin:koin-android-scope:1.0.1",
+            "koin-android-viewmodel": "org.koin:koin-android-viewmodel:1.0.1"
     ]
 }

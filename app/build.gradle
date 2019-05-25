@@ -1,9 +1,6 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
 
 repositories {
@@ -67,6 +64,10 @@ dependencies {
     implementation rootProject.ext.dependencies["pager-bottom-tab-strip"]
 
     implementation project(path: ':okgo')
+
+    implementation rootProject.ext.dependencies["koin-android"]
+    implementation rootProject.ext.dependencies["koin-android-scope"]
+    implementation rootProject.ext.dependencies["koin-android-viewmodel"]
 
     def aar = ['SVProgressHUD-1.0']
     aar.each { implementation(name: it, ext: 'aar') }
