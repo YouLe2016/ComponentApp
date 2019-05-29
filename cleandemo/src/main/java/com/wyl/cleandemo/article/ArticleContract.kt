@@ -5,15 +5,14 @@ import com.wyl.cleandemo.base.IView
 import com.wyl.cleandemo.domain.bean.ArticleBean
 
 interface ArticleContract {
-    interface ArticleView : IView {
-
+    interface View : IView {
         fun getArticleSuccess(articleBeanList: List<ArticleBean>)
 
         fun getArticleFail(failMsg: String)
 
     }
 
-    interface ArticlePresenter : IPresenter<ArticleView> {
+    interface Presenter : IPresenter {
         fun getArticleList(key: String)
     }
 }

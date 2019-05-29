@@ -6,7 +6,8 @@ import com.wyl.cleandemo.domain.bean.ArticleBean
 import com.wyl.cleandemo.domain.interactor.ArticleCase
 import com.wyl.cleandemo.domain.observer.BaseObserver
 
-class ArticlePresenter : BasePresenter<ArticleContract.ArticleView>() {
+class ArticlePresenter(view: ArticleContract.View?) : BasePresenter<ArticleContract.View>(view),
+    ArticleContract.Presenter {
     private lateinit var mCase: ArticleCase
 
     override fun createUseCase() {
@@ -14,17 +15,13 @@ class ArticlePresenter : BasePresenter<ArticleContract.ArticleView>() {
         mCaseList.add(mCase)
     }
 
-    fun getData(key: String) {
+    override fun getArticleList(key: String) {
         mCase.execute(key, object : BaseObserver<List<ArticleBean>>() {
             override fun onSuccess(t: List<ArticleBean>) {
                 view?.getArticleSuccess(t)
             }
 
             override fun onFail(failMsg: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onFinish() {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 

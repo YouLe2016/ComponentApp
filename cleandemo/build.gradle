@@ -1,38 +1,21 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-repositories {
-    mavenCentral()
-    flatDir { dir 'libs' }
-}
-
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion androidSdk.compileSdkVersion
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
-        testInstrumentationRunner rootProject.ext.android.testInstrumentationRunner
+        applicationId androidSdk.applicationId
+        minSdkVersion androidSdk.minSdkVersion
+        targetSdkVersion androidSdk.targetSdkVersion
+        versionCode androidSdk.versionCode
+        versionName androidSdk.versionName
+        testInstrumentationRunner androidSdk.testInstrumentationRunner
     }
     buildTypes {
-        debug {
-            //显示Log打印输出
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-            buildConfigField "String", "API_HOST", "\"http://192.168.1.88:8080\""
-            minifyEnabled false   //混淆编译
-            zipAlignEnabled false //Zip代码压缩优化
-        }
         release {
-            //不显示Log打印输出
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-            buildConfigField "String", "API_HOST", "\"http://122.114.236.100:8088\""
-            minifyEnabled false  //混淆编译
-            zipAlignEnabled true //Zip代码压缩优化
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     dataBinding.enabled = true
@@ -40,14 +23,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation rootProject.ext.support["kotlin-stdlib-jdk7"]
-    implementation rootProject.ext.support["appcompat-v7"]
-    implementation rootProject.ext.support["support-v4"]
-    implementation rootProject.ext.support["constraint-layout"]
-
-    testImplementation rootProject.ext.support["junit"]
-    androidTestImplementation rootProject.ext.support["runner"]
-    androidTestImplementation rootProject.ext.support["espresso-core"]
+    implementation supports
+    testImplementation tests
+    androidTestImplementation androidTests
 
     implementation project(path: ':okgo')
 }

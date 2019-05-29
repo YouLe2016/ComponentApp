@@ -10,7 +10,6 @@ import com.lzg.extend.StringDialogCallback
 import com.lzy.okgo.OkGo
 import com.lzy.okgo.model.Response
 import com.wyl.componentapp.R
-import kotlinx.android.synthetic.main.fragment_home_layout.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -38,7 +37,7 @@ class HomeFragment : Fragment() {
             .execute(object : StringDialogCallback(activity, true) {
                 override fun onSuccessResponse(response: Response<String>, msg: String?, msgCode: String?) {
                     val data = response.body()//这个就是返回来的结果
-                    text.text = data
+//                    text.text = data
                 }
 
 //                override fun onSuccess(response: Response<String>) {

@@ -1,17 +1,11 @@
 package com.wyl.cleandemo.base
 
-import android.arch.lifecycle.LifecycleObserver
 import com.wyl.cleandemo.domain.interactor.UseCase
 
-abstract class BasePresenter<V : IView> : IPresenter<V>{
-    var view: V? = null
+abstract class BasePresenter<V : IView>(var view: V?) : IPresenter {
 
     val mCaseList by lazy {
         mutableListOf<UseCase<*, *>>()
-    }
-
-    override fun attach(view: V) {
-        this.view = view
     }
 
     override fun detach() {

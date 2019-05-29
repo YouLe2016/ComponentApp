@@ -1,18 +1,19 @@
 package com.wyl.componentapp
 
 import android.os.Bundle
-import com.wyl.componentapp.common.base.BaseActivity
+import com.wyl.componentapp.common.base.BindingActivity
+import com.wyl.componentapp.common.utils.noStatusBar
 import com.wyl.componentapp.common.utils.transact
+import com.wyl.componentapp.databinding.HomeActivityBinding
 import com.wyl.componentapp.home.HomeFragment
 import com.wyl.componentapp.message.MessageFragment
 import com.wyl.componentapp.mine.MineFragment
-import kotlinx.android.synthetic.main.activity_home_layout.*
 
-
-class HomeActivity : BaseActivity() {
+class HomeActivity : BindingActivity<HomeActivityBinding>() {
     private val homeFragment by lazy {
         HomeFragment()
     }
+
     private val messageFragment by lazy {
         MessageFragment().apply {
             transact {
@@ -20,6 +21,7 @@ class HomeActivity : BaseActivity() {
             }
         }
     }
+
     private val mineFragment by lazy {
         MineFragment().apply {
             transact {
@@ -29,12 +31,16 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        noStatusBar()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_layout)
+    }
 
+    override fun getLayoutId(): Int = R.layout.home_activity
+
+    override fun initView() {
         transact { replace(R.id.rootView, homeFragment) }
 
-        tab.material()
+        mBinding.tab.material()
             .addItem(R.drawable.main_item0, "首页")
             .addItem(R.drawable.main_item2, "消息")
             .addItem(R.drawable.main_item3, "我的")
@@ -56,8 +62,15 @@ class HomeActivity : BaseActivity() {
                         hide(messageFragment)
                         show(mineFragment)
                     }
+                    else -> {
+                    }
                 }
             }
     }
+
+    override fun loadData() {
+
+    }
+
 
 }

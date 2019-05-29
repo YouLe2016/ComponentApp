@@ -3,7 +3,6 @@ package com.wyl.cleandemo.domain.observer
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
-
 abstract class BaseObserver<T> : Observer<T> {
     var disposable: Disposable? = null
         private set

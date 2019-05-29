@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 repositories {
@@ -9,14 +8,14 @@ repositories {
 }
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion androidSdk.compileSdkVersion
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
-        testInstrumentationRunner rootProject.ext.android.testInstrumentationRunner
+        applicationId androidSdk.applicationId
+        minSdkVersion androidSdk.minSdkVersion
+        targetSdkVersion androidSdk.targetSdkVersion
+        versionCode androidSdk.versionCode
+        versionName androidSdk.versionName
+        testInstrumentationRunner androidSdk.testInstrumentationRunner
     }
     buildTypes {
         debug {
@@ -53,21 +52,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation rootProject.ext.support["kotlin-stdlib-jdk7"]
-    implementation rootProject.ext.support["appcompat-v7"]
-    implementation rootProject.ext.support["support-v4"]
-    implementation rootProject.ext.support["constraint-layout"]
+    implementation supports
+    testImplementation tests
+    androidTestImplementation androidTests
 
-    testImplementation rootProject.ext.support["junit"]
-    androidTestImplementation rootProject.ext.support["runner"]
-    androidTestImplementation rootProject.ext.support["espresso-core"]
-    implementation rootProject.ext.dependencies["pager-bottom-tab-strip"]
+    implementation project(':okgo')
 
-    implementation project(path: ':okgo')
-
-    implementation rootProject.ext.dependencies["koin-android"]
-    implementation rootProject.ext.dependencies["koin-android-scope"]
-    implementation rootProject.ext.dependencies["koin-android-viewmodel"]
+    implementation dependency["pager-bottom-tab-strip"]
+    implementation dependency["koin-android"]
+    implementation dependency["koin-android-scope"]
+    implementation dependency["koin-android-viewmodel"]
 
     def aar = ['SVProgressHUD-1.0']
     aar.each { implementation(name: it, ext: 'aar') }

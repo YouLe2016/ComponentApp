@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion androidSdk.compileSdkVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
-        testInstrumentationRunner rootProject.ext.android.testInstrumentationRunner
+        minSdkVersion androidSdk.minSdkVersion
+        targetSdkVersion androidSdk.targetSdkVersion
+        targetSdkVersion androidSdk.targetSdkVersion
+        versionCode androidSdk.versionCode
+        versionName androidSdk.versionName
+        testInstrumentationRunner androidSdk.testInstrumentationRunner
     }
 
     buildTypes {
@@ -29,12 +29,12 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation rootProject.ext.support["junit"]
-    androidTestImplementation rootProject.ext.support["runner"]
-    androidTestImplementation rootProject.ext.support["espresso-core"]
+    implementation supports
+    testImplementation tests
+    androidTestImplementation androidTests
 
-    api rootProject.ext.dependencies["okhttp3"]
-    api rootProject.ext.dependencies["okrx"]
-    api rootProject.ext.dependencies["rxandroid"]
-    api rootProject.ext.dependencies["gson"]
+    api dependency["okhttp3"]
+    api dependency["okrx"]
+    api dependency["rxandroid"]
+    api dependency["gson"]
 }

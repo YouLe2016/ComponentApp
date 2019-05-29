@@ -1,6 +1,5 @@
 package com.wyl.cleandemo.article
 
-import android.text.method.ScrollingMovementMethod
 import android.view.View
 import com.wyl.cleandemo.R
 import com.wyl.cleandemo.base.BaseActivity
@@ -8,14 +7,12 @@ import com.wyl.cleandemo.data.ArticleRepositoryImpl
 import com.wyl.cleandemo.domain.bean.ArticleBean
 import com.wyl.cleandemo.domain.interactor.ArticleCase
 import com.wyl.cleandemo.domain.observer.BaseObserver
-import kotlinx.android.synthetic.main.activity_main.*
-
 
 /**
  * 需求
  * 用户点击 Button 按钮，获取微信精选文章，在界面显示。
  */
-class MainActivity : BaseActivity(), ArticleContract.ArticleView {
+class MainActivity : BaseActivity() {
     private val KEY = "dbb6893ab0913b02724696504181fe39"
 
     val articleCase by lazy {
@@ -25,7 +22,7 @@ class MainActivity : BaseActivity(), ArticleContract.ArticleView {
     override fun createView(): Int = R.layout.activity_main
 
     override fun initView() {
-        textView.movementMethod = ScrollingMovementMethod.getInstance()
+//        textView.movementMethod = ScrollingMovementMethod.getInstance()
     }
 
     override fun onClick(v: View) {
@@ -63,15 +60,15 @@ class MainActivity : BaseActivity(), ArticleContract.ArticleView {
         if (R.id.btnGet == v.id) {
             articleCase.execute(KEY, object : BaseObserver<List<ArticleBean>>() {
                 override fun onSuccess(t: List<ArticleBean>) {
-                    textView.text = t.toString()
+//                    textView.text = t.toString()
                 }
 
                 override fun onFail(failMsg: String) {
-                    textView.text = failMsg
+//                    textView.text = failMsg
                 }
 
                 override fun onStart() {
-                    textView.text = "请求中..."
+//                    textView.text = "请求中..."
                 }
             })
 
@@ -100,14 +97,6 @@ class MainActivity : BaseActivity(), ArticleContract.ArticleView {
 
     override fun initData() {
         mCaseList.add(articleCase)
-    }
-
-    override fun getArticleSuccess(articleBeanList: List<ArticleBean>) {
-
-    }
-
-    override fun getArticleFail(failMsg: String) {
-
     }
 
 }

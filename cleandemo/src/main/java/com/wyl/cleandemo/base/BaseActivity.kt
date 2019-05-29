@@ -10,7 +10,6 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
         mutableListOf<UseCase<*, *>>()
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(createView())

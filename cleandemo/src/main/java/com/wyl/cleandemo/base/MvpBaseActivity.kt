@@ -2,16 +2,19 @@ package com.wyl.cleandemo.base
 
 import android.os.Bundle
 
-abstract class MvpBaseActivity<V : IView, P : IPresenter<V>> : BaseActivity(), IView {
-    lateinit var mPresenter: P
+abstract class MvpBaseActivity : BaseActivity(), IView {
+    protected val mPresenters = mutableListOf<IPresenter>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        mPresenter = createPresenter()
-        @Suppress("UNCHECKED_CAST")
-        mPresenter.attach(this as V)
         super.onCreate(savedInstanceState)
+        createPresenter()
     }
 
-    abstract fun createPresenter(): P
+    abstract fun createPresenter()
+
+    override fun onDestroy() {
+        mPresenters.forEach { it.detach() }
+        super.onDestroy()
+    }
 
 }
