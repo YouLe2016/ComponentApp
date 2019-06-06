@@ -21,7 +21,6 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class HomeFragment : Fragment() {
-    val myViewModel: MyViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

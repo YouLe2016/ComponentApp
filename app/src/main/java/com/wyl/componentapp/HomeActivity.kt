@@ -6,10 +6,14 @@ import com.wyl.componentapp.common.utils.noStatusBar
 import com.wyl.componentapp.common.utils.transact
 import com.wyl.componentapp.databinding.HomeActivityBinding
 import com.wyl.componentapp.home.HomeFragment
+import com.wyl.componentapp.home.MyViewModel
 import com.wyl.componentapp.message.MessageFragment
 import com.wyl.componentapp.mine.MineFragment
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : BindingActivity<HomeActivityBinding>() {
+    private val viewModel: MyViewModel by viewModel()
+
     private val homeFragment by lazy {
         HomeFragment()
     }

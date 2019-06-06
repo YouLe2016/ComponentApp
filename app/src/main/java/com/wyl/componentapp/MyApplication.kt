@@ -17,6 +17,7 @@ class MyApplication : Application() {
         // Start Koin
         startKoin(this, appModule)
 
+
         // init OkGo
         OkGoInitializer.initOkGo(this)
         OkLogger.debug(BuildConfig.LOG_DEBUG)

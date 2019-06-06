@@ -1,4 +1,4 @@
-package com.wyl.componentapp.utils; /**
+package com.wyl.componentapp.common.utils; /**
  * Copyright (c) 2012-2013, Michael Yang 杨福海 (www.yangfuhai.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -43,7 +43,7 @@ public class ACache {
     private ACacheManager mCache;
 
     public static ACache get(Context ctx) {
-        return get(ctx, "com.wyl.componentapp.utils.ACache");
+        return get(ctx, "com.wyl.componentapp.common.utils.ACache");
     }
 
     public static ACache get(Context ctx, String cacheName) {
@@ -56,7 +56,7 @@ public class ACache {
     }
 
     public static ACache get(Context ctx, long max_zise, int max_count) {
-        File f = new File(ctx.getCacheDir(), "com.wyl.componentapp.utils.ACache");
+        File f = new File(ctx.getCacheDir(), "com.wyl.componentapp.common.utils.ACache");
         return get(f, max_zise, max_count);
     }
 
